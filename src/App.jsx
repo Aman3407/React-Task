@@ -1,22 +1,26 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import Wrapper from './component/Wrapper';
-import Home from "./pages/Home";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Details from "./pages/DetailsPage.jsx";
-import Error from "./pages/Error";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Outlet,
+  createBrowserRouter,
+} from "react-router-dom";
+import { AppProvider } from "./context/context";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/employee/:id" element={<Details />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </Router>
+    // <Router>
+    //   <Routes>
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/Signup" element={<Signup />} />
+    //     <Route path="/login" element={<Login />} />
+    //     <Route path="/employee/:id" element={<Details />} />
+    //     <Route path="*" element={<Error />} />
+    //   </Routes>
+    // </Router>
+    <AppProvider>
+      <Outlet />
+    </AppProvider>
   );
 }
 

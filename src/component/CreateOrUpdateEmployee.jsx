@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/context";
-import { API_ENDPOINT } from "../constants/constants";
 import { useParams } from "react-router-dom";
 
 export default function CreateOrUpdateEmployee() {
   const {
-    setError,
     showCreateModal,
     setShowCreateModal,
-    getEmployees,
+    createOrUpdateNewEmployee,
     showUpdateModal,
-    setShowUpdateModal,
+    setShowUpdateModal
   } = useGlobalContext();
   const {id} = useParams();
 
@@ -29,36 +27,9 @@ export default function CreateOrUpdateEmployee() {
   };
 
   const handleSubmit = () => {
-    createOrUpdateNewEmployee();
+    createOrUpdateNewEmployee(id,formData);
     setShowCreateModal(false);
     setShowUpdateModal(false);
-  };
-  
-  const createOrUpdateNewEmployee = async () => {
-    let method, finalURL;
-    if (showCreateModal) {          // for create employee
-      method = "POST";
-      finalURL = `${API_ENDPOINT}`;
-    } else {
-      method = "PUT";
-      finalURL = `${API_ENDPOINT}/${id}`;
-    }
-    try {
-      const response = await fetch(finalURL, {
-        method,
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json(formData);
-      if (response.ok) {
-        
-        await getEmployees();
-      } else setError(data.Error);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -69,7 +40,7 @@ export default function CreateOrUpdateEmployee() {
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Create Component</h3>
+                  <h3 className="text-3xl font-semibold">{showCreateModal? "Create" : "Update"} Component</h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => {

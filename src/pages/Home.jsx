@@ -2,20 +2,27 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/context";
 import CreateOrUpdateEmployee from "../component/CreateOrUpdateEmployee";
 import { EmployeeCard } from "../component/EmployeeCard";
+import Navbar from "../component/Navbar";
 
 const Home = () => {
   const [searchId, setSearchId] = useState(0);
-  const { list, loading, setShowCreateModal } = useGlobalContext();
-  const [users, setUsers] = useState(list);
+  const { list, setShowCreateModal, getEmployees} = useGlobalContext();
   const handleSearchChange = (e) => {
     setSearchId(e.target.value);
   };
+
   const filteredUsers = list.filter((user) => {
     console.log(user);
     return user.id == searchId || searchId == 0;
   });
 
+  useEffect(()=>{
+    getEmployees();
+  },[])
+
   return (
+    <>
+    <Navbar/>
     <div className="p-8 m-8">
       <div className="flex justify-between items-center mb-6">
         <input
@@ -39,6 +46,7 @@ const Home = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
