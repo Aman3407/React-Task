@@ -64,6 +64,15 @@ Displays all employees from the database.
 **Search by ID**
 <img width="1440" alt="Search by ID" src="https://github.com/user-attachments/assets/39af0fd2-fec3-47f5-86c6-899dedf8b710">
 
+#### Operations for User
+**User Home Page**
+<img width="1438" alt="image" src="https://github.com/user-attachments/assets/94105842-e526-4e53-8b5c-8fae29acc2b6">
+
+**User Details Page**
+<img width="1436" alt="image" src="https://github.com/user-attachments/assets/ffda648b-a747-41e8-987c-b0c0406914f5">
+
+As you can see user can not add, delete or update user information
+
 ### Logout
 Logs the user out and deletes the token.
 <img width="1440" alt="Logout" src="https://github.com/user-attachments/assets/f591e908-35d0-456d-a252-aa7741208e52">
